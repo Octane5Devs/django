@@ -58,6 +58,9 @@ def parse_date(value):
     Raises ValueError if the input is well formatted but not a valid date.
     Returns None if the input isn't well formatted.
     """
+    if hasattr(value, "decode"):
+        value = value.decode('utf-8')
+
     match = date_re.match(value)
     if match:
         kw = {k: int(v) for k, v in six.iteritems(match.groupdict())}
@@ -73,6 +76,9 @@ def parse_time(value):
     Returns None if the input isn't well formatted, in particular if it
     contains an offset.
     """
+    if hasattr(value, "decode"):
+        value = value.decode('utf-8')
+
     match = time_re.match(value)
     if match:
         kw = match.groupdict()
@@ -91,6 +97,9 @@ def parse_datetime(value):
     Raises ValueError if the input is well formatted but not a valid datetime.
     Returns None if the input isn't well formatted.
     """
+    if hasattr(value, "decode"):
+        value = value.decode('utf-8')
+
     match = datetime_re.match(value)
     if match:
         kw = match.groupdict()
@@ -117,6 +126,9 @@ def parse_duration(value):
 
     Also supports ISO 8601 representation.
     """
+    if hasattr(value, "decode"):
+        value = value.decode('utf-8')
+
     match = standard_duration_re.match(value)
     if not match:
         match = iso8601_duration_re.match(value)
