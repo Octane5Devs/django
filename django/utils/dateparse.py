@@ -72,6 +72,9 @@ def parse_date(value):
     Raise ValueError if the input is well formatted but not a valid date.
     Return None if the input isn't well formatted.
     """
+    if hasattr(value, "decode"):
+        value = value.decode("utf-8")
+
     match = date_re.match(value)
     if match:
         kw = {k: int(v) for k, v in match.groupdict().items()}
@@ -87,6 +90,9 @@ def parse_time(value):
     Return None if the input isn't well formatted, in particular if it
     contains an offset.
     """
+    if hasattr(value, "decode"):
+        value = value.decode("utf-8")
+
     match = time_re.match(value)
     if match:
         kw = match.groupdict()
@@ -104,6 +110,9 @@ def parse_datetime(value):
     Raise ValueError if the input is well formatted but not a valid datetime.
     Return None if the input isn't well formatted.
     """
+    if hasattr(value, "decode"):
+        value = value.decode("utf-8")
+
     match = datetime_re.match(value)
     if match:
         kw = match.groupdict()
@@ -130,6 +139,9 @@ def parse_duration(value):
     Also supports ISO 8601 representation and PostgreSQL's day-time interval
     format.
     """
+    if hasattr(value, "decode"):
+        value = value.decode("utf-8")
+
     match = (
         standard_duration_re.match(value) or
         iso8601_duration_re.match(value) or
