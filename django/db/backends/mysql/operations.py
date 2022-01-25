@@ -125,6 +125,9 @@ class DatabaseOperations(BaseDatabaseOperations):
         return 18446744073709551615
 
     def quote_name(self, name):
+        if hasattr(name, 'decode'):
+            name = name.decode('utf-8')
+
         if name.startswith("`") and name.endswith("`"):
             return name  # Quoting once is enough.
         return "`%s`" % name
