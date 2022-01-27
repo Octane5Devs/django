@@ -791,7 +791,7 @@ class ForeignKey(ForeignObject):
     }
     description = _("Foreign Key (type determined by related field)")
 
-    def __init__(self, to, on_delete=SET_NULL, related_name=None, related_query_name=None,
+    def __init__(self, to, on_delete=CASCADE, related_name=None, related_query_name=None,
                  limit_choices_to=None, parent_link=False, to_field=None,
                  db_constraint=True, **kwargs):
         try:
