@@ -4,7 +4,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('auth', '0011_update_proxy_permissions'),
+        ('auth', '0012_update_proxy_permissions'),
     ]
 
     operations = [
